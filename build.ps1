@@ -1,4 +1,5 @@
-﻿#
+﻿# Set-ExecutionPolicy RemoteSigned
+# 
 
 param ( [switch] $NoVerify, [switch] $NoExtract )
 

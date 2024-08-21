@@ -25,11 +25,35 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <ItemGroup />
   <ItemGroup>
     <Compile Include="build.ps1" />
     <Compile Include="util.ps1" />
-    <Compile Include="zeldanes1.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\" />
+    <Folder Include="src\dat\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\BeginEndVars.inc" />
+    <Content Include="src\bins.xml" />
+    <Content Include="src\CaveVars.inc" />
+    <Content Include="src\CommonVars.inc" />
+    <Content Include="src\dat\CreditsTextAddrsHi.inc" />
+    <Content Include="src\dat\CreditsTextAddrsLo.inc" />
+    <Content Include="src\dat\DemoLineTextAddrs.inc" />
+    <Content Include="src\dat\ObjListAddrs.inc" />
+    <Content Include="src\dat\PersonTextAddrs.inc" />
+    <Content Include="src\ObjVars.inc" />
+    <Content Include="src\Variables.inc" />
+    <Content Include="src\Z.cfg" />
+    <Content Include="src\Z_00.asm" />
+    <Content Include="src\Z_01.asm" />
+    <Content Include="src\Z_02.asm" />
+    <Content Include="src\Z_03.asm" />
+    <Content Include="src\Z_04.asm" />
+    <Content Include="src\Z_05.asm" />
+    <Content Include="src\Z_06.asm" />
+    <Content Include="src\Z_07.asm" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\PowerShell Tools for Visual Studio\PowerShellTools.targets" Condition="Exists('$(MSBuildExtensionsPath)\PowerShell Tools for Visual Studio\PowerShellTools.targets')" />
 </Project>

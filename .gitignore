@@ -363,4 +363,5 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # Specifique
-ext/Legend of Zelda, The (U) (PRG1) [!].nes
+ext/"Legend of Zelda, The (U) (PRG1) [!].nes
+#ext/*.nes

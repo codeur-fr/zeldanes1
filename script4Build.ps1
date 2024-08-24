@@ -41,7 +41,7 @@ function ConvertIncContentToBytes($incContent)
             foreach ($byteValue in $byteValues)
             {
                 # write-host "Processing byte value: $byteValue"  # Log the byte value being processed
-                if ($byteValue -match "`$[0-9A-F]{2}")
+                if ($byteValue -match '^\$([0-9A-F]{2})')
                 {
                     $bytes += [Convert]::ToByte($matches[1], 16)
                     # write-host "Added byte: $($matches[1])"  # Log the byte successfully added

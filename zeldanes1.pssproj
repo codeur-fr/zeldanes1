@@ -27,7 +27,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="build.ps1" />
-    <Compile Include="scriptExtract.ps1" />
+    <Compile Include="script3Extract.ps1" />
     <Compile Include="util.ps1" />
   </ItemGroup>
   <ItemGroup>

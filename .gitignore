@@ -363,4 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # Specifique
-ext/Original.nes
+ext/*.nes

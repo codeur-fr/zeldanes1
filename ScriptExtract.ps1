@@ -2,7 +2,7 @@ function ExtractAndFormatBins()
 {
     $romPath = resolve-path .\ext\Original.nes
     $binXmlPath = resolve-path .\src\bins.xml
-    $binRootPath = resolve-path .\src\dats\inc  # Modification ici pour diriger vers le nouveau dossier
+    $binRootPath = resolve-path .\src\dats  # Assure que les fichiers vont directement dans \src\dats
 
     $xml = new-object Xml
     $xml.Load( $binXmlPath )
@@ -11,10 +11,10 @@ function ExtractAndFormatBins()
 
     foreach ( $bin in $xml.Binaries.Binary )
     {
-        $incPath = ($bin.FileName -replace "dat$", "inc") # Change file extension to .inc
-        $incFullPath = join-path $binRootPath $incPath
+        $incFileName = [IO.Path]::GetFileNameWithoutExtension($bin.FileName) + ".inc"
+        $incFullPath = join-path $binRootPath $incFileName
         $incDir = split-path $incFullPath
-        mkdir $incDir -ErrorAction Ignore > $null  # S'assure que le dossier 'inc' existe
+        mkdir $incDir -ErrorAction Ignore > $null  # S'assure que le dossier nécessaire existe
 
         $offset = [int] $bin.Offset + 16
         $buf = new-object byte[] $bin.Length
@@ -40,6 +40,5 @@ function FormatAsAssembly([byte[]] $data)
     }
     return $output
 }
-
 
 ExtractAndFormatBins

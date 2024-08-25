@@ -1,5 +1,5 @@
-﻿# Set-ExecutionPolicy RemoteSigned
-# 
+﻿# Pour executer : Set-ExecutionPolicy RemoteSigned
+# .\build.ps1 -NoExtract
 
 param ( [switch] $NoVerify, [switch] $NoExtract )
 
@@ -10,7 +10,7 @@ trap { break }
 
 function Assemble( $srcPath, $objPath )
 {
-	write-host "Assembling $srcPath"
+	write-host "Assembling $srcPath and $objPath"
 	.\ext\ca65 $srcPath -o $objPath --bin-include-dir .\bin
 
 	$passed = $LastExitCode -eq 0
@@ -57,6 +57,7 @@ function ExtractBins()
 	{
 		$binPath = join-path $binRootPath $bin.FileName
 		$binDir = split-path $binPath
+		write-host "ExtractBins $binPath : $binDir"
 		mkdir $binDir -ErrorAction ignore > $null
 
 		$offset = [int] $bin.Offset + 16

@@ -9,7 +9,7 @@ param ( [switch] $NoVerify )
 function ReassembleIncsToDats()
 {
     $incRootPath = resolve-path .\src\dats
-    $datRootPath = resolve-path .\bin
+    $datRootPath = resolve-path .\bin\dat
 
     # Ensure output directory exists
     mkdir $datRootPath -ErrorAction Ignore > $null
@@ -57,7 +57,7 @@ function ConvertIncContentToBytes($incContent)
 }
 
 
-CheckRequirements # Assuming you have a similar requirements check
+# CheckRequirements # Assuming you have a similar requirements check
 
 if (!$NoVerify)
 {

@@ -1,3 +1,6 @@
+# .\script3Extract.ps1
+# Extrait les datas de la rom dans src/dats
+
 function ExtractAndFormatBins()
 {
     $romPath = resolve-path .\ext\Original.nes

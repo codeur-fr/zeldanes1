@@ -1,11 +1,10 @@
-#
+###########################################
 # script4Build.ps1
-#
-param ( [switch] $NoVerify )
-
-# Import utilities if necessary
-. (join-path $PSScriptRoot util.ps1)
-
+###########################################
+# Escalate any statement-terminating error to a script-terminating one.
+trap { break }
+. (join-path $PSScriptRoot script2Util.ps1)
+###########################################
 function ReassembleIncsToDats()
 {
     $incRootPath = resolve-path .\src\dats
@@ -28,7 +27,7 @@ function ReassembleIncsToDats()
         [IO.File]::WriteAllBytes($datPath, $byteArray)
     }
 }
-
+###########################################
 function ConvertIncContentToBytes($incContent)
 {
     $bytes = @()
@@ -55,14 +54,38 @@ function ConvertIncContentToBytes($incContent)
     }
     return $bytes
 }
-
-
-# CheckRequirements # Assuming you have a similar requirements check
-
-if (!$NoVerify)
+###########################################
+function Assemble( $srcPath, $objPath )
 {
-    # Your verification logic if needed
+	write-host "Assembling $srcPath and $objPath"
+	.\ext\ca65 $srcPath -o $objPath --bin-include-dir .\bin
+	$passed = $LastExitCode -eq 0
+	$script:assemblyPassed = $script:assemblyPassed -and $passed
+	if ( !$passed ) { write-host "" }
+}
+###########################################
+function Compile()
+{
+    $srcPaths = @()
+    $objPaths = @()
+    foreach ( $file in (dir src\*.asm) )
+    {
+	    $base = [IO.Path]::GetFileNameWithoutExtension( $file )
+	    $srcPaths += "src\$base.asm"
+	    $objPaths += "obj\$base.o"
+    }
+    foreach ( $i in 0..($srcPaths.length-1) )
+    {
+	    Assemble $srcPaths[$i] $objPaths[$i]
+    } 
+    echo "Linking"
+    .\ext\ld65 -o bin\Z.bin -C src\Z.cfg $objPaths
+    if ( $LastExitCode -ne 0 ) { exit }
+    echo "Combining raw ROM with NES header"
+    JoinFiles bin\Z.nes -in OriginalNesHeader.bin, bin\Z.bin
 }
 
 # Call function to reassemble .inc files to .dat
 ReassembleIncsToDats
+# Call function to compile
+Compile

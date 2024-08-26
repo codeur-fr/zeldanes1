@@ -1,4 +1,4 @@
-#
+# 26/08/2024 utils.ps1 renommé en script2Util.ps1
 
 function JoinFiles( [string] $outputPath, [string[]] $inputPaths )
 {

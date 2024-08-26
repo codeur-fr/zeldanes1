@@ -1,12 +1,11 @@
-﻿# Pour executer : Set-ExecutionPolicy RemoteSigned
-# .\build.ps1 -NoExtract
+﻿# .\script2Util.ps1 -NoExtract
 
 param ( [switch] $NoVerify, [switch] $NoExtract )
 
 # Escalate any statement-terminating error to a script-terminating one.
 trap { break }
 
-. (join-path $PSScriptRoot util.ps1)
+. (join-path $PSScriptRoot script2Util.ps1)
 
 function Assemble( $srcPath, $objPath )
 {

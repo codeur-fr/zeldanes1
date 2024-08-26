@@ -26,10 +26,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="build.ps1" />
+    <Compile Include="script1Build.ps1" />
     <Compile Include="script3Extract.ps1" />
     <Compile Include="script4Build.ps1" />
-    <Compile Include="util.ps1" />
+    <Compile Include="script2Util.ps1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\" />
@@ -37,6 +37,7 @@
     <Folder Include="src\dats\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="README.md" />
     <Content Include="src\BeginEndVars.inc" />
     <Content Include="src\bins.xml" />
     <Content Include="src\CaveVars.inc" />

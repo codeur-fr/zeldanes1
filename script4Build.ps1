@@ -1,13 +1,14 @@
 ###########################################
 # script4Build.ps1
 ###########################################
+param ( [int] $RepertoireNb)
 # Escalate any statement-terminating error to a script-terminating one.
 trap { break }
 . (join-path $PSScriptRoot script2Util.ps1)
 ###########################################
-function ReassembleIncsToDats()
+function ReassembleIncsToDats($i)
 {
-    $incRootPath = resolve-path .\src\dats
+    $incRootPath = resolve-path .\src\dats$i
     $datRootPath = resolve-path .\bin\dat
 
     # Ensure output directory exists
@@ -86,6 +87,6 @@ function Compile()
 }
 
 # Call function to reassemble .inc files to .dat
-ReassembleIncsToDats
+ReassembleIncsToDats($RepertoireNb)
 # Call function to compile
 Compile

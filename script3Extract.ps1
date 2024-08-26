@@ -5,7 +5,7 @@ function ExtractAndFormatBins()
 {
     $romPath = resolve-path .\ext\Original.nes
     $binXmlPath = resolve-path .\src\bins.xml
-    $binRootPath = resolve-path .\src\dats  # Assure que les fichiers vont directement dans \src\dats
+    $binRootPath = resolve-path .\src\dats0  # Assure que les fichiers vont directement dans \src\dats
 
     $xml = new-object Xml
     $xml.Load( $binXmlPath )

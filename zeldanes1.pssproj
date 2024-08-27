@@ -30,6 +30,7 @@
     <Compile Include="script3Extract.ps1" />
     <Compile Include="script4Build.ps1" />
     <Compile Include="script2Util.ps1" />
+    <Compile Include="script5Generation.ps1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\" />

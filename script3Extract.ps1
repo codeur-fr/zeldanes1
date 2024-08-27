@@ -1,4 +1,5 @@
-# .\script3Extract.ps1
+# 26/08/2024 .\script3Extract.ps1
+# 27/08/2024 Sur 1 ligne 8 à 16
 # Extrait les datas de la rom dans src/dats
 
 function ExtractAndFormatBins()
@@ -24,15 +25,15 @@ function ExtractAndFormatBins()
         [Array]::Copy( $image, $offset, $buf, 0, $bin.Length )
         
         # Format and write include file
-        $incContent = FormatAsAssembly $buf
+        $incContent = FormatAsAssembly16 $buf # 27/08/2024
         [IO.File]::WriteAllText( $incFullPath, $incContent )
         
         # Write the name of the generated file to the console for tracking
         write-host "Generated file: $incFullPath"
     }
 }
-
-function FormatAsAssembly([byte[]] $data)
+###########################################
+function FormatAsAssembly8([byte[]] $data)
 {
     $output = ""
     for ($i = 0; $i -lt $data.Length; $i += 8)
@@ -43,5 +44,19 @@ function FormatAsAssembly([byte[]] $data)
     }
     return $output
 }
-
+###########################################
+# 27/08/2024
+function FormatAsAssembly16([byte[]] $data)
+{
+    $output = ""
+    for ($i = 0; $i -lt $data.Length; $i += 16)
+    {
+        $lineEnd = [Math]::Min($i + 15, $data.Length - 1) # Ensure it does not exceed bounds
+        $lineData = $data[$i..$lineEnd]
+        $hexData = ($lineData | ForEach-Object { "`$$(("{0:X2}" -f $_))" }) -join ', ' # Format bytes as hexadecimal
+        $output += ".BYTE $hexData`r`n"
+    }
+    return $output
+}
+###########################################
 ExtractAndFormatBins

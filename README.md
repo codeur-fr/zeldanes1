@@ -16,8 +16,8 @@ script3Extract.ps1 : extrait les data de la rom pour les placer dans \src\dats\*
 
 script4Build.ps1 : place les fichiers \src\dats\*.inc dans \bin\dat\*.dat et génère Z.NES
 
-.\script4Build.ps1 -RepertoireNb 0 : Z.NES sera le jeu original
+.\script4Build.ps1 -RepertoireNb 0 : Z.NES génère le jeu original
 
-.\script4Build.ps1 -RepertoireNb 1 : Z.NES sera zeldaChaos
+.\script4Build.ps1 -RepertoireNb 1 : Z.NES génère zeldaChaos
 
 
